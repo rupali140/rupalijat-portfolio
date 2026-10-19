@@ -1,0 +1,38 @@
+.career {
+  max-width: 720px;
+}
+
+.career__copy {
+  color: var(--text-secondary);
+  font-size: 16.5px;
+  margin-bottom: 24px;
+}
+
+.career__roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.career__roles li {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+
+.career__actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .career__actions .btn {
+    width: 100%;
+  }
+}

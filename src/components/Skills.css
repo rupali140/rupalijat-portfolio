@@ -1,0 +1,123 @@
+.skills-section {
+  background: var(--bg-elevated);
+}
+
+.orbit-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 480px) 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.orbit-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 480px;
+}
+
+.orbit-ring {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  border: 1px dashed var(--border-strong);
+}
+
+.orbit-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(circle at 35% 30%, var(--glow), var(--cyan) 70%);
+  color: #0c0812;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 8px;
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.4);
+}
+
+.orbit-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 9px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), transform 0.2s var(--ease),
+    background 0.2s var(--ease);
+}
+
+.orbit-node:hover {
+  color: var(--text-primary);
+  border-color: var(--violet);
+}
+
+.orbit-node.is-active {
+  color: #0c0812;
+  background: var(--gradient-accent);
+  border-color: transparent;
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.orbit-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+}
+
+.orbit-panel__category {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 12px;
+}
+
+.orbit-panel__name {
+  font-size: 26px;
+  margin-bottom: 14px;
+}
+
+.orbit-panel__tip {
+  color: var(--text-secondary);
+  font-size: 15.5px;
+}
+
+@media (max-width: 860px) {
+  .orbit-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .orbit-wrap {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .orbit-node {
+    font-size: 10.5px;
+    padding: 7px 10px;
+  }
+
+  .orbit-center {
+    width: 84px;
+    height: 84px;
+    font-size: 12px;
+  }
+}

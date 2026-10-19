@@ -1,0 +1,287 @@
+/* =========================================================
+   THEME VARIABLES
+   Cosmic violet palette. --cyan/--violet names are kept from the
+   component library this was built on, but hold violet-family values
+   here (primary / secondary accent) — see the comment on each.
+   ========================================================= */
+:root {
+  --bg: #050506;
+  --bg-elevated: #0a0a0d;
+  --bg-card: #100e18;
+  --bg-card-hover: #161320;
+  --border: rgba(196, 181, 253, 0.1);
+  --border-strong: #30283f;
+
+  --text-primary: #f4f0f2;
+  --text-secondary: #a7a0ae;
+  --text-muted: #6e6878;
+
+  --cyan: #8b5cf6; /* primary accent — cosmic violet */
+  --cyan-soft: rgba(139, 92, 246, 0.16);
+  --violet: #a78bfa; /* secondary accent — soft violet */
+  --violet-soft: rgba(167, 139, 250, 0.16);
+  --glow: #c4b5fd; /* lavender glow, used for highlights/particles */
+  --gradient-accent: linear-gradient(120deg, var(--cyan), var(--glow));
+
+  --success: #34d399;
+  --success-soft: rgba(52, 211, 153, 0.14);
+  --danger: #f87171;
+  --danger-soft: rgba(248, 113, 113, 0.12);
+
+  --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --header-height: 72px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Light theme — refined neutral surfaces, restrained violet accent.
+   Toggled by the header theme button, which sets data-theme on <html>
+   and persists the choice to localStorage. */
+:root[data-theme='light'] {
+  --bg: #f7f6fb;
+  --bg-elevated: #efedf7;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f3f1fa;
+  --border: rgba(48, 40, 63, 0.1);
+  --border-strong: rgba(48, 40, 63, 0.22);
+
+  --text-primary: #1c1726;
+  --text-secondary: #4d4559;
+  --text-muted: #837c90;
+
+  --cyan: #7c3aed;
+  --cyan-soft: rgba(124, 58, 237, 0.1);
+  --violet: #8b5cf6;
+  --violet-soft: rgba(139, 92, 246, 0.1);
+  --glow: #a78bfa;
+
+  --success: #16a34a;
+  --success-soft: rgba(22, 163, 74, 0.1);
+  --danger: #dc2626;
+  --danger-soft: rgba(220, 38, 38, 0.1);
+}
+
+/* =========================================================
+   RESET & BASE
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section {
+  padding: 120px 0;
+  position: relative;
+}
+
+.section-label {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--cyan);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: var(--text-primary);
+}
+
+.section-lede {
+  color: var(--text-secondary);
+  max-width: 620px;
+  font-size: 16px;
+  margin-bottom: 56px;
+}
+
+/* =========================================================
+   ACCESSIBILITY: FOCUS STYLES
+   ========================================================= */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--glow);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 16px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  z-index: 1000;
+  transition: top 0.2s var(--ease);
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  letter-spacing: 0.3px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease),
+    border-color 0.25s var(--ease), color 0.25s var(--ease);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--gradient-accent);
+  color: #0c0812;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(139, 92, 246, 0.28);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.btn-secondary:hover {
+  border-color: var(--violet);
+  color: var(--violet);
+  transform: translateY(-3px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 10px 18px;
+}
+
+.btn-ghost:hover {
+  color: var(--text-primary);
+}
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+.reveal {
+  opacity: 1;
+  transform: translateY(18px);
+  transition: transform 0.7s var(--ease), opacity 0.7s var(--ease);
+}
+
+.reveal.is-visible {
+  transform: translateY(0);
+}
+
+.reveal:not(.is-visible) {
+  opacity: 0;
+}
+
+/* stagger helper: children get incremental delay via --i */
+.reveal-stagger {
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+/* =========================================================
+   REDUCED MOTION — global override
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
